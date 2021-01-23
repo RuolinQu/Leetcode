@@ -1,0 +1,63 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "name": "265. Paint House II",
+      "provenance": [],
+      "collapsed_sections": [],
+      "authorship_tag": "ABX9TyNGmC5d2WkUnhR+tbDCcz/r",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/RuolinQu/Leetcode/blob/main/linear%20dp\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "SCh-21sNnaf5"
+      },
+      "source": [
+        "class Solution:\r\n",
+        "    def minCostII(self, costs: List[List[int]]) -> int:\r\n",
+        "        \r\n",
+        "\r\n",
+        "        if not costs:return 0\r\n",
+        "        k=len(costs[0])\r\n",
+        "        if len(costs)==1:return min(costs[0])\r\n",
+        "        dp=[[0 for i in range(k)]for j in range(len(costs)+1)]\r\n",
+        "        \r\n",
+        "        \r\n",
+        "        # dp[i][j] 0<j<k  the min cost to paint the house from index 0 to i, with house [i] painted in j color\r\n",
+        "        # get min dp[i-1], and it index, find 2nd min for its own dp[i]\r\n",
+        "        \r\n",
+        "        for i in range(1,len(dp)):\r\n",
+        "            min1=min(dp[i-1])\r\n",
+        "            idx=dp[i-1].index(min1)\r\n",
+        "            min2=min(dp[i-1][:idx]+dp[i-1][idx+1:])\r\n",
+        "            for j in range(k):\r\n",
+        "                if j!=idx:dp[i][j]=min1+costs[i-1][j]\r\n",
+        "                else: dp[i][j]=min2+costs[i-1][j]\r\n",
+        "        return min(dp[-1])\r\n",
+        "            \r\n",
+        "            \r\n",
+        "            "
+      ],
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
