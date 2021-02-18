@@ -1,0 +1,87 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "name": "208. Implement Trie (Prefix Tree)",
+      "provenance": [],
+      "collapsed_sections": [],
+      "authorship_tag": "ABX9TyPkcUPj4hkmhv46M7ygSVRf",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/RuolinQu/Leetcode/blob/main/208_Implement_Trie_(Prefix_Tree)\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "X691e6xBVMj4"
+      },
+      "source": [
+        "class Trie:\r\n",
+        "\r\n",
+        "    def __init__(self):\r\n",
+        "        \"\"\"\r\n",
+        "        Initialize your data structure here.\r\n",
+        "        \"\"\" \r\n",
+        "        self.root={}\r\n",
+        "        \r\n",
+        "\r\n",
+        "    def insert(self, word: str) -> None:\r\n",
+        "        \"\"\"\r\n",
+        "        Inserts a word into the trie.\r\n",
+        "        \"\"\"\r\n",
+        "        node=self.root\r\n",
+        "        for ch in word:\r\n",
+        "            if ch not in node:node[ch]={}\r\n",
+        "            node=node[ch]\r\n",
+        "        node['#']={}\r\n",
+        "                \r\n",
+        "\r\n",
+        "    def search(self, word: str) -> bool:\r\n",
+        "        \"\"\"\r\n",
+        "        Returns if the word is in the trie.\r\n",
+        "        \"\"\"\r\n",
+        "        node=self.root\r\n",
+        "        for ch in word:\r\n",
+        "            if ch not in node:return False\r\n",
+        "            else:node=node[ch]\r\n",
+        "        if '#' in node:print(word)\r\n",
+        "        return '#' in node\r\n",
+        "        \r\n",
+        "\r\n",
+        "    def startsWith(self, prefix: str) -> bool:\r\n",
+        "        \"\"\"\r\n",
+        "        Returns if there is any word in the trie that starts with the given prefix.\r\n",
+        "        \"\"\"\r\n",
+        "        node=self.root\r\n",
+        "        for ch in prefix:\r\n",
+        "            if ch not in node:return False\r\n",
+        "            else:node=node[ch]\r\n",
+        "        return True\r\n",
+        "    \r\n",
+        "        \r\n",
+        "            \r\n",
+        "        \r\n",
+        "        \r\n",
+        "        \r\n",
+        "        "
+      ],
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
